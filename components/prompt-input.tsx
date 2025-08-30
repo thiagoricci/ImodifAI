@@ -14,9 +14,6 @@ const SUGGESTION_PROMPTS = [
   { text: "Make the sky more vibrant", icon: Palette },
   { text: "Remove the background", icon: Camera },
   { text: "Add a vintage filter", icon: Sparkles },
-  { text: "Enhance lighting and colors", icon: Lightbulb },
-  { text: "Make it look professional", icon: Camera },
-  { text: "Add dramatic sunset glow", icon: Palette },
 ]
 
 export function PromptInput({ value, onChange, disabled }: PromptInputProps) {

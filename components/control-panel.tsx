@@ -57,10 +57,21 @@ export function ControlPanel({
           <PromptInput value={prompt} onChange={onPromptChange} disabled={isProcessing} />
 
           <div className="flex gap-2 mt-3">
-            <Button onClick={onModify} disabled={!canModify} className="flex-1" size="default">
+            <Button 
+              onClick={onModify} 
+              disabled={!canModify} 
+              className="flex-1 md:h-10 md:px-6" 
+              size="default"
+            >
               {isProcessing ? "Processing..." : "Modify Photo"}
             </Button>
-            <Button onClick={onReset} variant="outline" disabled={isProcessing} size="default">
+            <Button 
+              onClick={onReset} 
+              variant="outline" 
+              disabled={isProcessing} 
+              className="md:h-10 md:px-6" 
+              size="default"
+            >
               Reset
             </Button>
           </div>
