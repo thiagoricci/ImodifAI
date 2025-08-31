@@ -243,7 +243,7 @@ export default function PhotoModifierApp() {
         {/* Footer */}
         <div className="text-center mt-8 sm:mt-12 md:mt-16 pb-6 sm:pb-8">
           <p className="text-xs sm:text-sm text-muted-foreground px-4">
-            Powered by advanced AI technology • Your photos are processed securely and never stored
+            Powered by advanced AI technology • Your photos are deleted after a few minutes
           </p>
         </div>
       </div>
