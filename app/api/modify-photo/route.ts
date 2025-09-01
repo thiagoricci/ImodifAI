@@ -262,7 +262,17 @@ export async function POST(request: NextRequest) {
     
     console.log("[v0] Original image uploaded to ImgBB:", originalImageUrl)
 
-    const n8nWebhookUrl = "https://reivien-ai.app.n8n.cloud/webhook/83100530-a8b1-4575-bfc0-470974bb92cf"
+    const n8nWebhookUrl = process.env.N8N_WEBHOOK_URL
+    if (!n8nWebhookUrl) {
+      console.log("[v0] N8N webhook URL not found in environment variables")
+      return NextResponse.json(
+        {
+          success: false,
+          error: "N8N webhook URL not configured. Please check environment variables.",
+        },
+        { status: 500 },
+      )
+    }
 
     // Make request to n8n webhook for image modification
     const startTime = Date.now()
