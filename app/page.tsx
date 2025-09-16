@@ -67,20 +67,22 @@ export default function PhotoModifierApp() {
         console.error("[v0] Error response:", errorText)
         
         // Try to parse as JSON for structured error, otherwise use text
-        let errorMessage = "Failed to process image. Please try again."
-        try {
-          const errorData = JSON.parse(errorText)
-          errorMessage = errorData.error || errorMessage
-        } catch {
-          // If not JSON, use a generic message
-          if (response.status === 413) {
-            errorMessage = "Image file is too large. Please use a smaller image."
-          } else if (response.status === 429) {
-            errorMessage = "Too many requests. Please wait a moment and try again."
-          } else if (response.status === 500) {
-            errorMessage = "Server error occurred. Please try again later."
+          let errorMessage = "Failed to process image. Please try again."
+          try {
+            const errorData = JSON.parse(errorText)
+            errorMessage = errorData.error || errorMessage
+          } catch {
+            // If not JSON, use a generic message
+            if (response.status === 413) {
+              errorMessage = "Image file is too large. Please use a smaller image."
+            } else if (response.status === 429) {
+              errorMessage = "Too many requests. Please wait a moment and try again."
+            } else if (response.status === 500) {
+              errorMessage = "Server error occurred. Please try again later."
+            } else if (response.status === 408) {
+              errorMessage = "Processing is taking longer than expected. The image may still be processing, please try again in a few moments."
+            }
           }
-        }
         
         setResult({
           success: false,

@@ -281,7 +281,7 @@ export async function POST(request: NextRequest) {
     const controller = new AbortController()
     const timeoutId = setTimeout(() => {
       controller.abort()
-    }, 180000) // 3-minute timeout
+    }, 300000) // 5-minute timeout
 
     let n8nResponse
     try {
@@ -414,11 +414,11 @@ export async function POST(request: NextRequest) {
 
     // Handle timeout errors
     if (error instanceof Error && error.name === "TimeoutError") {
-      console.log("[v0] Request timed out after 180 seconds")
+      console.log("[v0] Request timed out after 300 seconds")
       return NextResponse.json(
         {
           success: false,
-          error: "Processing timeout after 3 minutes. Please try with a smaller image or simpler prompt.",
+          error: "Processing timeout after 5 minutes. The image is still being processed, please try again in a few moments.",
         },
         { status: 408 },
       )
