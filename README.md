@@ -59,6 +59,7 @@ ImodifAI is an advanced photo modification application that leverages artificial
 
    ```env
    IMGBB_API_KEY=your_imgbb_api_key
+   N8N_WEBHOOK_URL=your_n8n_webhook_url
    ```
 
 4. Run the development server:
