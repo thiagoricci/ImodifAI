@@ -165,9 +165,9 @@ export function PhotoUpload({ onImageUpload, uploadedImage }: PhotoUploadProps) 
   }, [cameraStream])
 
   const processFile = useCallback(async (file: File) => {
-    // Check file size (5MB limit)
-    if (file.size > 5 * 1024 * 1024) {
-      showNotification("File size must be less than 5MB")
+    // Check file size (10MB limit)
+    if (file.size > 10 * 1024 * 1024) {
+      showNotification("File size must be less than 10MB")
       return
     }
 
@@ -176,8 +176,8 @@ export function PhotoUpload({ onImageUpload, uploadedImage }: PhotoUploadProps) 
       reader.onload = async (e) => {
         const result = e.target?.result as string
 
-        // Check if base64 is too large (5MB * 1.37 for base64 overhead)
-        if (result.length > 5 * 1024 * 1024 * 1.37) {
+        // Check if base64 is too large (10MB * 1.37 for base64 overhead)
+        if (result.length > 10 * 1024 * 1024 * 1.37) {
           showNotification("Image is too large after processing. Please use a smaller image.")
           return
         }
@@ -559,7 +559,7 @@ export function PhotoUpload({ onImageUpload, uploadedImage }: PhotoUploadProps) 
                 JPG • PNG • HEIC
               </div>
               <div className="px-2 py-1 bg-muted/50 rounded-full text-xs text-muted-foreground">
-                Max 5MB
+                Max 10MB
               </div>
             </div>
           </div>

@@ -159,7 +159,7 @@ async function uploadToImgBB(base64Image: string): Promise<string | null> {
 }
 
 
-function compressBase64Image(base64: string, maxSizeMB = 5): string {
+function compressBase64Image(base64: string, maxSizeMB = 10): string {
   try {
     // Remove data URL prefix if present
     const base64Data = base64.replace(/^data:image\/[a-z]+;base64,/, "")
@@ -220,12 +220,12 @@ export async function POST(request: NextRequest) {
       "chars (~" + originalSizeInMB.toFixed(1) + "MB)",
     )
 
-    if (originalSizeInMB > 5) {
+    if (originalSizeInMB > 10) {
       console.log("[v0] Image too large - rejecting:", originalSizeInMB.toFixed(1) + "MB")
       return NextResponse.json(
         {
           success: false,
-          error: "Image is too large. Please use an image under 5MB for best results.",
+          error: "Image is too large. Please use an image under 10MB for best results.",
         },
         { status: 413 },
       )
@@ -325,7 +325,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
           {
             success: false,
-            error: "Image is too large for processing. Please use an image under 5MB.",
+            error: "Image is too large for processing. Please use an image under 10MB.",
           },
           { status: 413 },
         )
@@ -429,7 +429,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: "AI service returned an invalid response. Please try with an image under 5MB.",
+          error: "AI service returned an invalid response. Please try with an image under 10MB.",
         },
         { status: 502 },
       )
